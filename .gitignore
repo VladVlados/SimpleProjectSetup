@@ -4,6 +4,9 @@
 Temp/
 /Library/
 build/
+/[Uu]ser[Ss]ettings/
+/[Aa]rtifacts/
+/[Tt]ools/
 *.collabignore
 
 # ===================================== #
@@ -30,6 +33,7 @@ obj/
 ._*
 .Spotlight-V100
 .Trashes
+FirebaseCppApp-10_4_0.bundle
 ehthumbs.db
 Thumbs.db
 Builds/*

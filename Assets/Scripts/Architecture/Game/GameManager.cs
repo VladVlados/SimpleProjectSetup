@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace Architecture.Game {
   public class GameManager : MonoBehaviour {
+    private bool _stayOnGamePause;
+
     private void Awake() {
       DontDestroyOnLoad(gameObject);
     }
@@ -11,8 +13,32 @@ namespace Architecture.Game {
       OnApplicationUpdateEvent?.Invoke();
     }
 
-    private void OnApplicationPause(bool pauseStatus) { }
+    private void OnApplicationFocus(bool hasFocus) {
+      if (Game.Initialized == false) {
+        return;
+      }
+
+      if (!hasFocus) {
+        return;
+      }
+
+      if (_stayOnGamePause == false) {
+        ResumeGame();
+      }
+    }
+
+    private void OnApplicationPause(bool pauseStatus) {
+      if (Game.Initialized == false) {
+        return;
+      }
+
+      SetupGamePause(pauseStatus);
+    }
+
     private void OnApplicationQuit() { }
+
+    private void SetupGamePause(bool pauseStatus) { }
+    private void ResumeGame() { }
 
     public static event Action OnApplicationUpdateEvent;
   }

@@ -1,24 +1,38 @@
 using System;
 using System.Collections;
+using Architecture.Settings.Global;
 using Architecture.Tools;
+using UnityEngine;
 
 namespace Architecture.Game {
   public enum ModuleLoadingProgress {
+    GlobalSettingsInitialized,
+    SaveDataInitialized,
     AudioManagerInitialized
   }
 
   public class Game {
+    public static GlobalSettings Settings { get; private set; }
     public static AudioManager AudioManager { get; private set; }
     public static SavedData SavedData { get; private set; }
     public static bool Initialized { get; private set; }
 
     public static void Run() {
+      Debug.Log("Run");
       CoroutineHandler.StartRoutine(RunGameRoutine());
     }
 
     private static IEnumerator RunGameRoutine() {
+      InitSaveData();
+      OnModuleLoadedEvent?.Invoke(ModuleLoadingProgress.SaveDataInitialized);
+      yield return null;
+
       InitAudioManager();
       OnModuleLoadedEvent?.Invoke(ModuleLoadingProgress.AudioManagerInitialized);
+      yield return null;
+
+      InitGlobalSettings();
+      OnModuleLoadedEvent?.Invoke(ModuleLoadingProgress.GlobalSettingsInitialized);
       yield return null;
 
       OnGameInitializedEvent?.Invoke();
@@ -27,6 +41,16 @@ namespace Architecture.Game {
 
     private static void InitAudioManager() {
       AudioManager = new AudioManager();
+    }
+
+    private static void InitGlobalSettings() {
+      const string globalSettingsPath = "Settings/Global/GlobalSettings";
+      Settings = Resources.Load<GlobalSettings>(globalSettingsPath);
+      Settings.InitValues();
+    }
+
+    private static void InitSaveData() {
+      SavedData = new SavedData();
     }
 
     public static event Action OnGameInitializedEvent;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Architecture.Scene;
 using Architecture.Settings.Global;
 using Architecture.Tools;
 using UnityEngine;
@@ -8,17 +9,18 @@ namespace Architecture.Game {
   public enum ModuleLoadingProgress {
     GlobalSettingsInitialized,
     SaveDataInitialized,
-    AudioManagerInitialized
+    AudioManagerInitialized,
+    SceneManagerInitialized
   }
 
   public class Game {
+    public static IScenesManager ScenesManager { get; private set; }
     public static GlobalSettings Settings { get; private set; }
     public static AudioManager AudioManager { get; private set; }
     public static SavedData SavedData { get; private set; }
     public static bool Initialized { get; private set; }
 
     public static void Run() {
-      Debug.Log("Run");
       CoroutineHandler.StartRoutine(RunGameRoutine());
     }
 
@@ -33,6 +35,10 @@ namespace Architecture.Game {
 
       InitGlobalSettings();
       OnModuleLoadedEvent?.Invoke(ModuleLoadingProgress.GlobalSettingsInitialized);
+      yield return null;
+
+      InitScenesManager();
+      OnModuleLoadedEvent?.Invoke(ModuleLoadingProgress.SceneManagerInitialized);
       yield return null;
 
       OnGameInitializedEvent?.Invoke();
@@ -51,6 +57,10 @@ namespace Architecture.Game {
 
     private static void InitSaveData() {
       SavedData = new SavedData();
+    }
+    
+    private static void InitScenesManager() {
+      ScenesManager = new ScenesManager();
     }
 
     public static event Action OnGameInitializedEvent;

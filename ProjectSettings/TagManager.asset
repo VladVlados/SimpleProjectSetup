@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Screen
+    uniqueID: 826689741
+    locked: 0
+  - name: FXUnderPopups
+    uniqueID: 2621694087
+    locked: 0
+  - name: Popups
+    uniqueID: 2241363797
+    locked: 0
+  - name: FXOverPopups
+    uniqueID: 3231685435
+    locked: 0

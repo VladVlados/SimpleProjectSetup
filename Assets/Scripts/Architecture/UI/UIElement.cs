@@ -6,8 +6,12 @@ namespace Architecture.UI {
     protected UILayerType _layer;
     
 
-    public void Show() {
+    public virtual void Show() {
       gameObject.SetActive(true);
+    }
+    
+    public virtual void Hide() {
+      gameObject.SetActive(false);
     }
     
     public void HideInstantly() {

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5075201196158199161}
   - component: {fileID: 1707682406533785061}
   - component: {fileID: 2581086923050665481}
-  - component: {fileID: 1429478273429841105}
+  - component: {fileID: -7962261635306354660}
   m_Layer: 0
-  m_Name: adadad
+  m_Name: Footer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 078a4039d463c2449ba2bf5ca35d795f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1429478273429841105
+--- !u!114 &-7962261635306354660
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2575572955302196423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcea2361128bdca4fb9556c8a7c36f41, type: 3}
+  m_Script: {fileID: 11500000, guid: 204228b4d41ca9845bbb3c7b63aaea81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _layer: 0

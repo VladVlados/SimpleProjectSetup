@@ -8,14 +8,20 @@ namespace Architecture.UI {
   public class UIController : MonoBehaviour {
     [SerializeField]
     private UILayer[] _layers;
-    private Dictionary<string, UIElement> _createdUIElementsMap;
-    private Dictionary<string, UIElement> _popupsMap;
+    private Dictionary<Type, UIElement> _createdUIElementsMap;
+    private Dictionary<Type, UIElement> _popupsMap;
     private SceneConfig _sceneConfig;
 
     private void Awake() {
-      _createdUIElementsMap = new Dictionary<string, UIElement>();
-      _popupsMap = new Dictionary<string, UIElement>();
+      _createdUIElementsMap = new Dictionary<Type, UIElement>();
+      _popupsMap = new Dictionary<Type, UIElement>();
       DontDestroyOnLoad(gameObject);
+    }
+
+    public T GetUIElement<T>() where T : UIElement {
+      Type type = typeof(T);
+      _createdUIElementsMap.TryGetValue(type, out UIElement uiElement);
+      return (T)uiElement;
     }
 
     public void Clear() {
@@ -27,7 +33,7 @@ namespace Architecture.UI {
       foreach (UIElement uiElement in allCreatedUIElements) {
         Destroy(uiElement.gameObject);
       }
-      
+
       _createdUIElementsMap.Clear();
       _popupsMap.Clear();
     }
@@ -49,7 +55,8 @@ namespace Architecture.UI {
       Transform container = GetContainer(uiScreenPref.Layer);
       UIScreen createdUIScreen = Instantiate(uiScreenPref, container);
       createdUIScreen.name = uiScreenPref.name;
-      _createdUIElementsMap[createdUIScreen.name] = createdUIScreen;
+      Type type = createdUIScreen.GetType();
+      _createdUIElementsMap[type] = createdUIScreen;
       if (uiScreenPref.ShowByDefault) {
         createdUIScreen.Show();
       }
@@ -59,8 +66,9 @@ namespace Architecture.UI {
       Transform container = GetContainer(popupPref.Layer);
       UIPopup createdPopup = Instantiate(popupPref, container);
       createdPopup.name = popupPref.name;
-      _popupsMap[createdPopup.name] = createdPopup;
-      _createdUIElementsMap[createdPopup.name] = createdPopup;
+      Type type = createdPopup.GetType();
+      _popupsMap[type] = createdPopup;
+      _createdUIElementsMap[type] = createdPopup;
       popupPref.HideInstantly();
     }
 

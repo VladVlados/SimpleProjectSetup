@@ -1,6 +1,6 @@
 using Architecture;
 using Architecture.Constants;
-using Architecture.Game;
+using Architecture.GameCore;
 using Architecture.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,11 +21,10 @@ namespace Loading {
 
     private void InitializeMenu() {
       Game.Run();
-      GameUI.Build();
     }
 
     private void OnGameInitialized() {
-      SceneManager.LoadScene(Constants.SceneNames.MAIN_MENU);
+      Game.ScenesManager.LoadScene(Constants.SceneNames.MAIN_MENU);
     }
   }
 }

@@ -1,16 +1,18 @@
+using Architecture.GameCore;
+using Architecture.Scene;
 using UnityEngine;
 
 namespace Architecture.UI {
   public static class GameUI {
     public static UIController Controller { get; private set; }
 
-    public static void Build() {
+    public static void Build(SceneConfig sceneConfig) {
       if (Controller == null) {
         Controller = CreateUIController();
       }
 
       Controller.Clear();
-      Controller.BuildUI();
+      Controller.BuildUI(sceneConfig);
     }
 
     private static UIController CreateUIController() {

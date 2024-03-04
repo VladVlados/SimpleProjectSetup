@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Architecture.Game {
+namespace Architecture.GameCore {
   public class GameManager : MonoBehaviour {
     private bool _stayOnGamePause;
 

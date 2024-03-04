@@ -7,5 +7,9 @@ namespace Architecture.Constants {
     public class PrefabsNames {
       public const string PATH_UI_CONTROLLER_PREFAB = "UIController";
     }
+
+    public class ResourcesPath {
+      public const string CONFIG = "SceneConfigs";
+    }
   }
 }

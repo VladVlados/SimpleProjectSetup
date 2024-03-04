@@ -5,7 +5,7 @@ using Architecture.Settings.Global;
 using Architecture.Tools;
 using UnityEngine;
 
-namespace Architecture.Game {
+namespace Architecture.GameCore {
   public enum ModuleLoadingProgress {
     GlobalSettingsInitialized,
     SaveDataInitialized,
@@ -14,7 +14,7 @@ namespace Architecture.Game {
   }
 
   public class Game {
-    public static IScenesManager ScenesManager { get; private set; }
+    public static ScenesManager ScenesManager { get; private set; }
     public static GlobalSettings Settings { get; private set; }
     public static AudioManager AudioManager { get; private set; }
     public static SavedData SavedData { get; private set; }

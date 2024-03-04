@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ea24726753fa641b95215691fb990e, type: 3}
+  m_Name: SandBox
+  m_EditorClassIdentifier: 
+  _sceneName: SandBox
+  _uiPrefabs:
+  - {fileID: 18354636803897735, guid: 7146ae01b1d79de42bed5e7c22b12665, type: 3}
+  - {fileID: 2575572955302196423, guid: c76fc53bef6420d41b4063185b4f0a8c, type: 3}

@@ -4,6 +4,7 @@ using Architecture.Audio;
 using Architecture.Scene;
 using Architecture.Settings.Global;
 using Architecture.Tools;
+using Architecture.Utils.TimerUtils;
 using UnityEngine;
 
 namespace Architecture.GameCore {
@@ -11,7 +12,8 @@ namespace Architecture.GameCore {
     GlobalSettingsInitialized,
     SaveDataInitialized,
     AudioManagerInitialized,
-    SceneManagerInitialized
+    SceneManagerInitialized,
+    TimeInvokerInitialized
   }
 
   public class Game {
@@ -19,6 +21,7 @@ namespace Architecture.GameCore {
     public static GlobalSettings Settings { get; private set; }
     public static AudioManager AudioManager { get; private set; }
     public static SavedData SavedData { get; private set; }
+    public static TimeInvoker TimeInvoker { get; private set; }
     public static bool Initialized { get; private set; }
 
     public static void Run() {
@@ -41,6 +44,10 @@ namespace Architecture.GameCore {
       InitScenesManager();
       OnModuleLoadedEvent?.Invoke(ModuleLoadingProgress.SceneManagerInitialized);
       yield return null;
+      
+      InitTimeInvoker();
+      OnModuleLoadedEvent?.Invoke(ModuleLoadingProgress.TimeInvokerInitialized);
+      yield return null;
 
       OnGameInitializedEvent?.Invoke();
       Initialized = true;
@@ -62,6 +69,10 @@ namespace Architecture.GameCore {
     
     private static void InitScenesManager() {
       ScenesManager = new ScenesManager();
+    }
+    
+    private static void InitTimeInvoker() {
+      TimeInvoker = new TimeInvoker();
     }
 
     public static event Action OnGameInitializedEvent;

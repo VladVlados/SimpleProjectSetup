@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Architecture.Tools;
 using Architecture.UI;
+using ObjectPool.Scripts.PoolLogic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,11 +11,16 @@ namespace Architecture.Scene {
   public class ScenesManager : IScenesManager {
     private string _actualScene;
     private string _loadingScene;
+    private Pool _pool;
     public event IScenesManager.SceneManagerHandler OnSceneLoadCompletedEvent;
     public event Action OnSceneLoadShownEvent;
     public ScenesManager() {
       ScenesConfigMap = new Dictionary<string, SceneConfig>();
       InitializeSceneConfigs();
+    }
+
+    public Pool GetPool() {
+      return _pool;
     }
 
     private void InitializeSceneConfigs() {
@@ -57,6 +63,8 @@ namespace Architecture.Scene {
       _actualScene = _loadingScene;
       yield return null;
       BuildUI(config);
+      _pool = new Pool();
+      yield return CoroutineHandler.StartRoutine(_pool.InitializeRoutine());
       sceneLoadedCallback?.Invoke(config);
       SceneLoadCompleted = true;
       OnSceneLoadCompletedEvent?.Invoke(config);

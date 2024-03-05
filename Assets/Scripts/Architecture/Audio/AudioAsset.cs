@@ -12,14 +12,15 @@ namespace Architecture.Audio {
     private Dictionary<SoundType, AudioClip[]> _audioValuesDictionary;
 
     public override void InitializeSettings() {
-      foreach (var audioAsset in _audioValues) {
-        _audioValuesDictionary.Add(audioAsset.SoundType, audioAsset.AudioClipBundle);
+      _audioValuesDictionary = new Dictionary<SoundType, AudioClip[]>();
+      for (var i = 0; i < _audioValues.Length; i++) {
+        _audioValuesDictionary.Add(_audioValues[i].GetSoundType, _audioValues[i].GetAudioClips);
       }
     }
 
     public AudioClip GetAudioClip(SoundType soundType) {
       _audioValuesDictionary.TryGetValue(soundType, out AudioClip[] audioClipArray);
-      AudioClip audioClip = audioClipArray?[Random.Range(0, audioClipArray.Length)];
+      AudioClip audioClip = audioClipArray?[Random.Range(0, audioClipArray.Length - 1)];
       return audioClip;
     }
   }
@@ -31,13 +32,24 @@ namespace Architecture.Audio {
 
     [SerializeField]
     private SoundType _soundType;
-    
-    public SoundType SoundType { get; private set; }
-    public AudioClip[] AudioClipBundle { get; private set; }
+
+    public SoundType GetSoundType {
+      get {
+        return _soundType;
+      }
+    }
+
+    public AudioClip[] GetAudioClips {
+      get {
+        return _audioClipBundle;
+      }
+    }
   }
 
   public enum SoundType {
-    Nothing = 100,
-    TestSound = 101
+    TestSound1,
+    TestSound2,
+    TestSound3,
+    TestSound4
   }
 }

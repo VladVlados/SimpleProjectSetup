@@ -12,3 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2fd56c678c8594eae3811c36bcc4bd, type: 3}
   m_Name: AudioAssets
   m_EditorClassIdentifier: 
+  _audioValues:
+  - _audioClipBundle:
+    - {fileID: 8300000, guid: 8bfb8ae25291a744aa5ae41611712621, type: 3}
+    - {fileID: 8300000, guid: 3e2920ef5ab410c45b0caead476706ec, type: 3}
+    _soundType: 0
+  - _audioClipBundle:
+    - {fileID: 8300000, guid: 34897c20fa4599e498dc02682bb67cf5, type: 3}
+    _soundType: 1
+  - _audioClipBundle:
+    - {fileID: 8300000, guid: daec934ee5fdb6b42af37c3b3f9cff84, type: 3}
+    _soundType: 2
+  - _audioClipBundle:
+    - {fileID: 8300000, guid: 38e7e12ee7e3ff946adef5aae6c14251, type: 3}
+    - {fileID: 8300000, guid: 89374bb38164f1d4fafe04dddbe85324, type: 3}
+    _soundType: 3

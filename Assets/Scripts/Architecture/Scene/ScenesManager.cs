@@ -6,14 +6,17 @@ using Architecture.UI;
 using ObjectPool.Scripts.PoolLogic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace Architecture.Scene {
   public class ScenesManager : IScenesManager {
+    public event IScenesManager.SceneManagerHandler OnSceneLoadCompletedEvent;
+    public event Action OnSceneLoadShownEvent;
+    public event IScenesManager.SceneManagerHandler OnSceneLoadStartedEvent;
     private string _actualScene;
     private string _loadingScene;
     private Pool _pool;
-    public event IScenesManager.SceneManagerHandler OnSceneLoadCompletedEvent;
-    public event Action OnSceneLoadShownEvent;
+
     public ScenesManager() {
       ScenesConfigMap = new Dictionary<string, SceneConfig>();
       InitializeSceneConfigs();
@@ -23,18 +26,18 @@ namespace Architecture.Scene {
       return _pool;
     }
 
-    private void InitializeSceneConfigs() {
-      SceneConfig[] allSceneConfigs = Resources.LoadAll<SceneConfig>(Constants.Constants.ResourcesPath.CONFIG);
-      foreach (SceneConfig sceneConfig in allSceneConfigs) {
-        ScenesConfigMap[sceneConfig.SceneName] = sceneConfig;
-      }
-    }
-    
     public Coroutine LoadScene(string sceneName, UnityAction<SceneConfig> sceneLoadedCallback = null) {
       _loadingScene = sceneName;
       return LoadAndInitializeScene(sceneName, sceneLoadedCallback, true);
     }
-    
+
+    private void InitializeSceneConfigs() {
+      SceneConfig[] allSceneConfigs = Resources.LoadAll<SceneConfig>(Constants.Constants.Paths.CONFIG);
+      foreach (SceneConfig sceneConfig in allSceneConfigs) {
+        ScenesConfigMap[sceneConfig.SceneName] = sceneConfig;
+      }
+    }
+
     private Coroutine LoadAndInitializeScene(string sceneName, UnityAction<SceneConfig> sceneLoadedCallback, bool loadNewScene) {
       ScenesConfigMap.TryGetValue(sceneName, out SceneConfig config);
 
@@ -44,22 +47,22 @@ namespace Architecture.Scene {
 
       return CoroutineHandler.StartRoutine(LoadSceneRoutine(config, sceneLoadedCallback, loadNewScene));
     }
-    
+
     private IEnumerator LoadSceneRoutine(SceneConfig config, UnityAction<SceneConfig> sceneLoadedCallback, bool loadNewScene = true) {
       if (SceneLoadCompleted == false) {
         yield break;
       }
-      
+
       SceneLoadCompleted = false;
       SceneLoadShown = false;
       OnSceneLoadStartedEvent?.Invoke(config);
       yield return null;
 
       if (loadNewScene) {
-        AsyncOperation asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(config.SceneName);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(config.SceneName);
         asyncOperation.allowSceneActivation = true;
       }
-      
+
       _actualScene = _loadingScene;
       yield return null;
       BuildUI(config);
@@ -69,7 +72,7 @@ namespace Architecture.Scene {
       SceneLoadCompleted = true;
       OnSceneLoadCompletedEvent?.Invoke(config);
     }
-    
+
     private void BuildUI(SceneConfig config) {
       GameUI.Build(config);
     }
@@ -78,7 +81,6 @@ namespace Architecture.Scene {
       OnSceneLoadShownEvent?.Invoke();
       SceneLoadShown = true;
     }
-    public event IScenesManager.SceneManagerHandler OnSceneLoadStartedEvent;
 
     public Dictionary<string, SceneConfig> ScenesConfigMap { get; }
     public bool SceneLoadCompleted { get; private set; } = true;

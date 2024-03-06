@@ -16,7 +16,7 @@ namespace Architecture.UI {
     }
 
     private static UIController CreateUIController() {
-      var pref = Resources.Load<UIController>(Constants.Constants.PrefabsNames.PATH_UI_CONTROLLER_PREFAB);
+      var pref = Resources.Load<UIController>(Constants.Constants.PrefabsNames.UI_CONTROLLER_PREFAB);
       UIController createdController = Object.Instantiate(pref);
       createdController.name = pref.name;
       Resources.UnloadUnusedAssets();

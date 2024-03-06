@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Architecture.Audio;
+using Architecture.Save;
 using Architecture.Scene;
 using Architecture.Settings.Global;
 using Architecture.Tools;
@@ -44,7 +45,7 @@ namespace Architecture.GameCore {
       InitScenesManager();
       OnModuleLoadedEvent?.Invoke(ModuleLoadingProgress.SceneManagerInitialized);
       yield return null;
-      
+
       InitTimeInvoker();
       OnModuleLoadedEvent?.Invoke(ModuleLoadingProgress.TimeInvokerInitialized);
       yield return null;
@@ -58,19 +59,18 @@ namespace Architecture.GameCore {
     }
 
     private static void InitGlobalSettings() {
-      const string globalSettingsPath = "Settings/Global/GlobalSettings";
-      Settings = Resources.Load<GlobalSettings>(globalSettingsPath);
+      Settings = Resources.Load<GlobalSettings>(Constants.Constants.Paths.GLOBAL_SETTINGS_PATH);
       Settings.InitValues();
     }
 
     private static void InitSaveData() {
       SavedData = new SavedData();
     }
-    
+
     private static void InitScenesManager() {
       ScenesManager = new ScenesManager();
     }
-    
+
     private static void InitTimeInvoker() {
       TimeInvoker = new TimeInvoker();
     }

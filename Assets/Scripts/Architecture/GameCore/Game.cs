@@ -29,6 +29,10 @@ namespace Architecture.GameCore {
       CoroutineHandler.StartRoutine(RunGameRoutine());
     }
 
+    public static T GetSceneDataStorage<T>() where T : SceneDataStorage {
+      return ScenesManager.GetSceneDataStorage<T>();
+    }
+
     private static IEnumerator RunGameRoutine() {
       InitSaveData();
       OnModuleLoadedEvent?.Invoke(ModuleLoadingProgress.SaveDataInitialized);
@@ -52,10 +56,6 @@ namespace Architecture.GameCore {
 
       OnGameInitializedEvent?.Invoke();
       Initialized = true;
-    }
-
-    public static T GetSceneDataStorage<T>() where T : SceneDataStorage {
-      return ScenesManager.GetSceneDataStorage<T>();
     }
 
     private static void InitAudioManager() {

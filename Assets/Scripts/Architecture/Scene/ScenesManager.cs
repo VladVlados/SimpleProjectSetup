@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Architecture.Tools;
 using Architecture.UI;
-using ObjectPool.Scripts.PoolLogic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -21,7 +20,7 @@ namespace Architecture.Scene {
       ScenesConfigMap = new Dictionary<string, SceneConfig>();
       InitializeSceneConfigs();
     }
-    
+
     public T GetSceneDataStorage<T>() where T : SceneDataStorage {
       return _sceneConfig.GetComponent<T>();
     }

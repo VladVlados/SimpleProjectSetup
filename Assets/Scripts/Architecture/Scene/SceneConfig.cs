@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Architecture.UI;
 using Attributes.ClassReferenceAttribute;
 using Attributes.GameObjectOfType;
 using Attributes.SceneNameAttribute;
-using ObjectPool.Scripts.PoolLogic;
 using UnityEngine;
 
 namespace Architecture.Scene {
@@ -18,12 +16,18 @@ namespace Architecture.Scene {
     private string[] _sceneDataStorages;
     [Header("======= UI STRUCTURE ======="), Space(20), SerializeField, GameObjectOfType(typeof(UIElement))]
     private List<GameObject> _uiPrefabs;
-    
+
     private Dictionary<Type, SceneDataStorage> _componentsMap;
 
     public string SceneName {
       get {
         return _sceneName;
+      }
+    }
+
+    public UIElement[] UIPrefabs {
+      get {
+        return GetUIPrefabs();
       }
     }
 
@@ -53,12 +57,6 @@ namespace Architecture.Scene {
       }
 
       return createdMap;
-    }
-
-    public UIElement[] UIPrefabs {
-      get {
-        return GetUIPrefabs();
-      }
     }
 
     public UIElement[] GetUIPrefabs() {

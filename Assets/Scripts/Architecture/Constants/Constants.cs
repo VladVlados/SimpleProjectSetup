@@ -4,8 +4,9 @@ namespace Architecture.Constants {
       public const string MAIN_MENU = "MainMenu";
     }
 
-    public class PrefabsNames {
+    public class Names {
       public const string UI_CONTROLLER_PREFAB = "UIController";
+      public const string COROUTINE_HANDLER = "[COROUTINE HANDLER]";
     }
 
     public class Paths {

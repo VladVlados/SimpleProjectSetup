@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Architecture.Tools {
   public class CoroutineHandler : MonoBehaviour {
-    private const string NAME = "[COROUTINE HANDLER]";
     private static CoroutineHandler _instance;
 
     private static CoroutineHandler Instance {
@@ -41,7 +40,7 @@ namespace Architecture.Tools {
     }
 
     private static CoroutineHandler CreateSingleton() {
-      var createdManager = new GameObject(NAME).AddComponent<CoroutineHandler>();
+      var createdManager = new GameObject(Constants.Constants.Names.COROUTINE_HANDLER).AddComponent<CoroutineHandler>();
       createdManager.hideFlags = HideFlags.HideAndDontSave;
       DontDestroyOnLoad(createdManager.gameObject);
       return createdManager;

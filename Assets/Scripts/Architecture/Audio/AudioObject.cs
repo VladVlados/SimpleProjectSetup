@@ -10,8 +10,8 @@ namespace Architecture.Audio {
     private AudioValue _currentAudioValue;
     private bool _isPaused;
     private bool _isPlayDelay;
-    private Timer _timer;
     private SoundType _soundType;
+    private Timer _timer;
 
     private void Awake() {
       _audioSource = GetComponent<AudioSource>();
@@ -53,13 +53,13 @@ namespace Architecture.Audio {
         _audioSource.UnPause();
       }
     }
-    
+
     public void PlaySoundOneShot(AudioClip audioClip) {
       _audioSource.PlayOneShot(audioClip);
       _timer.Start(audioClip.length);
       _timer.OnTimerFinishedEvent += FinishPlayback;
     }
-    
+
     public void PlaySoundOneShot(AudioClip audioClip, Vector3 position) {
       _audioSource.transform.position = position;
       _audioSource.PlayOneShot(audioClip);
@@ -73,7 +73,7 @@ namespace Architecture.Audio {
       _timer.Start(audioClip.length);
       _timer.OnTimerFinishedEvent += FinishPlayback;
     }
-    
+
     public void PlaySound(AudioClip audioClip, Vector3 position) {
       _audioSource.clip = audioClip;
       _audioSource.transform.position = position;

@@ -18,7 +18,6 @@ namespace Architecture.Scene {
 
       Coroutine InitializeCurrentScene(UnityAction<SceneConfig> sceneLoadedCallback = null);
 
-      //IScene SceneActual { get; }
       Dictionary<string, SceneConfig> ScenesConfigMap { get; }
       bool SceneLoadCompleted { get; }
       bool SceneLoadShown { get; }

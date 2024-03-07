@@ -54,6 +54,10 @@ namespace Architecture.GameCore {
       Initialized = true;
     }
 
+    public static T GetSceneDataStorage<T>() where T : SceneDataStorage {
+      return ScenesManager.GetSceneDataStorage<T>();
+    }
+
     private static void InitAudioManager() {
       AudioManager = new AudioManager();
     }

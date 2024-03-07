@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MainMenu
   m_EditorClassIdentifier: 
   _sceneName: MainMenu
+  _sceneDataStorages: 00000000
   _uiPrefabs:
   - {fileID: 2575572955302196423, guid: 2dfe831cf5c850044abdcb68e0c5c198, type: 3}
   - {fileID: 18354636803897735, guid: ae6106aa102601e4a922d4d62b8f6ff0, type: 3}

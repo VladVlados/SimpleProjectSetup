@@ -1,23 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Architecture.Scene;
+using Architecture.Tools;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace ObjectPool.Scripts.PoolLogic {
-  public class Pool {
-    protected readonly Dictionary<Type, ObjectPool<IPoolable>> _poolMap = new Dictionary<Type, ObjectPool<IPoolable>>();
-
-    public IEnumerator InitializeRoutine() {
-      yield return LoadPrefabs();
+  public sealed class Pool : SceneDataStorage{
+    private readonly Dictionary<Type, ObjectPool<IPoolable>> _poolMap = new Dictionary<Type, ObjectPool<IPoolable>>();
+    public override void Initialize() {
+      CoroutineHandler.StartRoutine(LoadPrefabs());
     }
 
-    public virtual T Get<T>() where T : IPoolable {
+    public T Get<T>() where T : IPoolable {
       Type type = typeof(T);
       return (T) _poolMap[type].Get();
     }
 
-    public virtual void Return<T>(T item) where T : IPoolable {
+    public void Return<T>(T item) where T : IPoolable {
       Type type = typeof(T);
       if (_poolMap.ContainsKey(type) == false) {
         return;

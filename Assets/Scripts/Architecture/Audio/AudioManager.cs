@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Architecture.GameCore;
+using ObjectPool.Scripts.PoolLogic;
 using UnityEngine;
 
 namespace Architecture.Audio {
@@ -7,7 +8,7 @@ namespace Architecture.Audio {
     private List<AudioObject> _playingSounds = new ();
     private Dictionary<SoundType, AudioObject> _singleSounds = new ();
     public void PlaySoundOneShot(SoundType soundType) {
-      AudioObject audioObject = Game.ScenesManager.GetPool().Get<AudioObject>();
+      AudioObject audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
       AudioClip audioClip = Game.Settings.Values<AudioAsset>().GetAudioClip(soundType);
       audioObject.PlaySoundOneShot(audioClip);
       audioObject.PlaybackFinished += StopSound;
@@ -15,7 +16,7 @@ namespace Architecture.Audio {
     }
     
     public void PlaySoundOneShot(SoundType soundType, Vector3 position) {
-      AudioObject audioObject = Game.ScenesManager.GetPool().Get<AudioObject>();
+      AudioObject audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
       AudioClip audioClip = Game.Settings.Values<AudioAsset>().GetAudioClip(soundType);
       audioObject.PlaySoundOneShot(audioClip, position);
       audioObject.PlaybackFinished += StopSound;
@@ -27,7 +28,7 @@ namespace Architecture.Audio {
         return;
       }
       
-      AudioObject audioObject = Game.ScenesManager.GetPool().Get<AudioObject>();
+      AudioObject audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
       AudioClip audioClip = Game.Settings.Values<AudioAsset>().GetAudioClip(soundType);
       audioObject.SetAudioSoundType(soundType);
       _singleSounds.Add(soundType, audioObject);
@@ -42,7 +43,7 @@ namespace Architecture.Audio {
         return;
       }
       
-      AudioObject audioObject = Game.ScenesManager.GetPool().Get<AudioObject>();
+      AudioObject audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
       AudioClip audioClip = Game.Settings.Values<AudioAsset>().GetAudioClip(soundType);
       audioObject.SetAudioSoundType(soundType);
       _singleSounds.Add(soundType, audioObject);

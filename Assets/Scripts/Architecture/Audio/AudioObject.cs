@@ -29,7 +29,7 @@ namespace Architecture.Audio {
 
     public void Return() {
       gameObject.SetActive(false);
-      Game.ScenesManager.GetPool().Return(this);
+      Game.GetSceneDataStorage<Pool>().Return(this);
     }
 
     public event Action<AudioObject> PlaybackFinished;

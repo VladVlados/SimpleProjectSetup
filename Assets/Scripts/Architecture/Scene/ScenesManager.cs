@@ -15,15 +15,15 @@ namespace Architecture.Scene {
     public event IScenesManager.SceneManagerHandler OnSceneLoadStartedEvent;
     private string _actualScene;
     private string _loadingScene;
-    private Pool _pool;
+    private SceneConfig _sceneConfig;
 
     public ScenesManager() {
       ScenesConfigMap = new Dictionary<string, SceneConfig>();
       InitializeSceneConfigs();
     }
-
-    public Pool GetPool() {
-      return _pool;
+    
+    public T GetSceneDataStorage<T>() where T : SceneDataStorage {
+      return _sceneConfig.GetComponent<T>();
     }
 
     public Coroutine LoadScene(string sceneName, UnityAction<SceneConfig> sceneLoadedCallback = null) {
@@ -53,6 +53,7 @@ namespace Architecture.Scene {
         yield break;
       }
 
+      _sceneConfig = config;
       SceneLoadCompleted = false;
       SceneLoadShown = false;
       OnSceneLoadStartedEvent?.Invoke(config);
@@ -66,8 +67,8 @@ namespace Architecture.Scene {
       _actualScene = _loadingScene;
       yield return null;
       BuildUI(config);
-      _pool = new Pool();
-      yield return CoroutineHandler.StartRoutine(_pool.InitializeRoutine());
+      config.CreateSceneDataStorage();
+      yield return null;
       sceneLoadedCallback?.Invoke(config);
       SceneLoadCompleted = true;
       OnSceneLoadCompletedEvent?.Invoke(config);

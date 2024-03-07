@@ -40,7 +40,6 @@ namespace Architecture.UI {
 
     public void BuildUI(SceneConfig sceneConfig) {
       _sceneConfig = sceneConfig;
-
       UIElement[] prefabs = _sceneConfig.GetUIPrefabs();
       foreach (UIElement uiElementPref in prefabs) {
         if (uiElementPref is UIScreen uiScreenPref && uiScreenPref.Layer == UILayerType.Screen) {

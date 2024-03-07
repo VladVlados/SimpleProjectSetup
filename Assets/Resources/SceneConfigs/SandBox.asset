@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SandBox
   m_EditorClassIdentifier: 
   _sceneName: SandBox
+  _sceneDataStorages: 00000000
   _uiPrefabs:
   - {fileID: 18354636803897735, guid: 7146ae01b1d79de42bed5e7c22b12665, type: 3}
   - {fileID: 2575572955302196423, guid: c76fc53bef6420d41b4063185b4f0a8c, type: 3}

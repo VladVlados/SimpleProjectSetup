@@ -7,6 +7,7 @@ using Architecture.Settings.Global;
 using Architecture.Tools;
 using Architecture.Utils.TimerUtils;
 using UnityEngine;
+using CoroutineHandler = Architecture.CodeBase.Services.CoroutineHandler.CoroutineHandler;
 
 namespace Architecture.GameCore {
   public enum ModuleLoadingProgress {
@@ -26,7 +27,7 @@ namespace Architecture.GameCore {
     public static bool Initialized { get; private set; }
 
     public static void Run() {
-      CoroutineHandler.StartRoutine(RunGameRoutine());
+      //CoroutineHandler.StartRoutine(RunGameRoutine());
     }
 
     public static T GetSceneDataStorage<T>() where T : SceneDataStorage {

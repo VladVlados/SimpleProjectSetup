@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using Architecture.Scene;
 using Architecture.Tools;
 using UnityEngine;
+using CoroutineHandler = Architecture.CodeBase.Services.CoroutineHandler.CoroutineHandler;
 using Object = UnityEngine.Object;
 
 namespace ObjectPool.Scripts.PoolLogic {
   public sealed class Pool : SceneDataStorage{
     private readonly Dictionary<Type, ObjectPool<IPoolable>> _poolMap = new Dictionary<Type, ObjectPool<IPoolable>>();
     public override void Initialize() {
-      CoroutineHandler.StartRoutine(LoadPrefabs());
+      //CoroutineHandler.StartRoutine(LoadPrefabs());
     }
 
     public T Get<T>() where T : IPoolable {

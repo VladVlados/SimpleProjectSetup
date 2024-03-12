@@ -3,6 +3,7 @@ using Architecture.GameCore;
 using Architecture.Utils.TimerUtils;
 using ObjectPool.Scripts.PoolLogic;
 using UnityEngine;
+using IPoolable = Architecture.CodeBase.Pool.IPoolable;
 
 namespace Architecture.Audio {
   public class AudioObject : MonoBehaviour, IPoolable {
@@ -23,13 +24,15 @@ namespace Architecture.Audio {
       FinishPlayback();
     }
 
+    public event EventHandler OnReturnEvent;
+
     public void Get() {
       gameObject.SetActive(true);
     }
 
     public void Return() {
       gameObject.SetActive(false);
-      Game.GetSceneDataStorage<Pool>().Return(this);
+     // Game.GetSceneDataStorage<Pool>().Return(this);
     }
 
     public event Action<AudioObject> PlaybackFinished;

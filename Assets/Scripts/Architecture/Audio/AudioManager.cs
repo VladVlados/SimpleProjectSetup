@@ -9,19 +9,19 @@ namespace Architecture.Audio {
     private Dictionary<SoundType, AudioObject> _singleSounds = new();
 
     public void PlaySoundOneShot(SoundType soundType) {
-      var audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
+      /*var audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
       AudioClip audioClip = Game.Settings.Values<AudioAsset>().GetAudioClip(soundType);
       audioObject.PlaySoundOneShot(audioClip);
       audioObject.PlaybackFinished += StopSound;
-      _playingSounds.Add(audioObject);
+      _playingSounds.Add(audioObject);*/
     }
 
     public void PlaySoundOneShot(SoundType soundType, Vector3 position) {
-      var audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
+      /*var audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
       AudioClip audioClip = Game.Settings.Values<AudioAsset>().GetAudioClip(soundType);
       audioObject.PlaySoundOneShot(audioClip, position);
       audioObject.PlaybackFinished += StopSound;
-      _playingSounds.Add(audioObject);
+      _playingSounds.Add(audioObject);*/
     }
 
     public void PlaySound(SoundType soundType) {
@@ -29,14 +29,14 @@ namespace Architecture.Audio {
         return;
       }
 
-      var audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
+      /*var audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
       AudioClip audioClip = Game.Settings.Values<AudioAsset>().GetAudioClip(soundType);
       audioObject.SetAudioSoundType(soundType);
       _singleSounds.Add(soundType, audioObject);
       audioObject.PlaySound(audioClip);
       audioObject.SinglePlaybackFinished += RemoveSingleSound;
       audioObject.PlaybackFinished += StopSound;
-      _playingSounds.Add(audioObject);
+      _playingSounds.Add(audioObject);*/
     }
 
     public void PlaySound(SoundType soundType, Vector3 position) {
@@ -44,14 +44,14 @@ namespace Architecture.Audio {
         return;
       }
 
-      var audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
+      /*var audioObject = Game.GetSceneDataStorage<Pool>().Get<AudioObject>();
       AudioClip audioClip = Game.Settings.Values<AudioAsset>().GetAudioClip(soundType);
       audioObject.SetAudioSoundType(soundType);
       _singleSounds.Add(soundType, audioObject);
       audioObject.PlaySound(audioClip, position);
       audioObject.SinglePlaybackFinished += RemoveSingleSound;
       audioObject.PlaybackFinished += StopSound;
-      _playingSounds.Add(audioObject);
+      _playingSounds.Add(audioObject);*/
     }
 
     private void StopSound(AudioObject audioObject) {

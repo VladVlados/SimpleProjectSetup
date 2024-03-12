@@ -6,6 +6,7 @@ using Architecture.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using CoroutineHandler = Architecture.CodeBase.Services.CoroutineHandler.CoroutineHandler;
 
 namespace Architecture.Scene {
   public class ScenesManager : IScenesManager {
@@ -22,7 +23,7 @@ namespace Architecture.Scene {
     }
 
     public T GetSceneDataStorage<T>() where T : SceneDataStorage {
-      return _sceneConfig.GetComponent<T>();
+      return null;
     }
 
     public Coroutine LoadScene(string sceneName, UnityAction<SceneConfig> sceneLoadedCallback = null) {
@@ -44,7 +45,9 @@ namespace Architecture.Scene {
         throw new NullReferenceException($"There is no scene ({sceneName}) in the scenes list. The name is wrong or you forget to add it to the list.");
       }
 
-      return CoroutineHandler.StartRoutine(LoadSceneRoutine(config, sceneLoadedCallback, loadNewScene));
+      return null;
+
+      //return CoroutineHandler.StartRoutine(LoadSceneRoutine(config, sceneLoadedCallback, loadNewScene));
     }
 
     private IEnumerator LoadSceneRoutine(SceneConfig config, UnityAction<SceneConfig> sceneLoadedCallback, bool loadNewScene = true) {
@@ -66,7 +69,7 @@ namespace Architecture.Scene {
       _actualScene = _loadingScene;
       yield return null;
       BuildUI(config);
-      config.CreateSceneDataStorage();
+      //config.CreateSceneDataStorage();
       yield return null;
       sceneLoadedCallback?.Invoke(config);
       SceneLoadCompleted = true;

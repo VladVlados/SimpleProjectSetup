@@ -13,9 +13,5 @@ MonoBehaviour:
   m_Name: MainMenu
   m_EditorClassIdentifier: 
   _sceneName: MainMenu
-  _sceneDataStorages:
-  - ObjectPool.Scripts.PoolLogic.Pool
   _uiPrefabs:
-  - {fileID: 2575572955302196423, guid: 2dfe831cf5c850044abdcb68e0c5c198, type: 3}
-  - {fileID: 18354636803897735, guid: ae6106aa102601e4a922d4d62b8f6ff0, type: 3}
-  - {fileID: 2575572955302196423, guid: 536fda1cf7cc9c341851342b22499f93, type: 3}
+  - {fileID: 6731946074251487360, guid: 64b83926cb0a8c6499c84e2a728a41a0, type: 3}

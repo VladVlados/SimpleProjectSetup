@@ -22,6 +22,7 @@ namespace Architecture.CodeBase {
       InstallGameFactory();
       InstallCoroutineHandler();
       InstallSavedData();
+      InstallIAPManager();
     }
 
     private void InstallGlobalData() {
@@ -56,6 +57,10 @@ namespace Architecture.CodeBase {
 
     private void InstallSavedData() {
       Container.Bind<ISavedData>().To<SavedData>().AsSingle();
+    }
+
+    private void InstallIAPManager() {
+      Container.Bind<IIAPManager>().To<IAPManager>().AsSingle();
     }
 
     private void InstallCoroutineHandler() {

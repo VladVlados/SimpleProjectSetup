@@ -10,7 +10,6 @@ namespace Architecture.CodeBase.Services.Audio {
   public class AudioService : IAudioService {
     private readonly AudioPool _audioPool;
     private readonly IGameFactory _gameFactory;
-    private readonly AudioFileStorage _audioFileStorage;
     private readonly IGlobalDataService _globalDataService;
     private readonly IMonoEventService _monoEvent;
     private readonly List<AudioObject> _playingSounds = new();

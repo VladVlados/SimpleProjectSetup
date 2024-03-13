@@ -2,7 +2,7 @@ using System.IO;
 using UnityEngine;
 
 namespace Architecture.Save {
-  public class SavedData {
+  public class SavedData : ISavedData{
     private Data _data;
 
     public SavedData() {

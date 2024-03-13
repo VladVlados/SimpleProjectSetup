@@ -6,6 +6,7 @@ using Architecture.CodeBase.Services.Factory;
 using Architecture.CodeBase.Services.GlobalData;
 using Architecture.CodeBase.Services.Random;
 using Architecture.CodeBase.Services.SceneLoader;
+using Architecture.Save;
 using UnityEngine;
 using Zenject;
 
@@ -20,6 +21,7 @@ namespace Architecture.CodeBase {
       InstallAudio();
       InstallGameFactory();
       InstallCoroutineHandler();
+      InstallSavedData();
     }
 
     private void InstallGlobalData() {
@@ -50,6 +52,10 @@ namespace Architecture.CodeBase {
 
     private void InstallGameFactory() {
       Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
+    }
+
+    private void InstallSavedData() {
+      Container.Bind<ISavedData>().To<SavedData>().AsSingle();
     }
 
     private void InstallCoroutineHandler() {

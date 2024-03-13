@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
-using Architecture.Settings.Global;
+using Architecture.CodeBase.Services.GlobalData;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Architecture.Audio {
   [CreateAssetMenu(fileName = "AudioAssets", menuName = "Audio/AudioAssets")]
-  public class AudioAsset : SettingsComponent {
+  public class AudioAsset : ItemGlobalData {
     [SerializeField]
     private AudioValue[] _audioValues;
     private Dictionary<SoundType, AudioClip[]> _audioValuesDictionary;
 
-    public override void InitializeSettings() {
+    protected override void LoadData() {
       _audioValuesDictionary = new Dictionary<SoundType, AudioClip[]>();
       for (var i = 0; i < _audioValues.Length; i++) {
         _audioValuesDictionary.Add(_audioValues[i].GetSoundType, _audioValues[i].GetAudioClips);

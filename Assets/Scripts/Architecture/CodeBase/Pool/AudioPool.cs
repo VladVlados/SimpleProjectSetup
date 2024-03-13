@@ -1,5 +1,5 @@
 using System;
-using Architecture.CodeBase.Services.Audio.Components;
+using Architecture.Audio;
 
 namespace Architecture.CodeBase.Pool {
     public class AudioPool : ObjectPool<AudioObject> {

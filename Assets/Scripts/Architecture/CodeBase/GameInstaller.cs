@@ -13,13 +13,13 @@ namespace Architecture.CodeBase {
   public class GameInstaller : MonoInstaller<GameInstaller> {
     public override void InstallBindings() {
       InstallGlobalData();
-      InstallRandom();
-      InstallEventService();
-      InstallSceneLoader();
-      InstallCoroutineHandler();
-      InstallAudio();
       InstallAssets();
+      InstallEventService();
+      InstallRandom();
+      InstallSceneLoader();
+      InstallAudio();
       InstallGameFactory();
+      InstallCoroutineHandler();
     }
 
     private void InstallGlobalData() {

@@ -1,21 +1,22 @@
+using Architecture;
+using Architecture.CodeBase.Services.Factory;
 using Architecture.CodeBase.Services.SceneLoader;
-using Architecture.UI;
 using UnityEngine;
-using Zenject;
 
 namespace _Temp.Scripts {
-  public class MainMenu : MonoBehaviour
-  {
+  public class MainMenu : MonoBehaviour {
+    private IGameFactory _gameFactory;
     private ISceneLoader _sceneLoader;
 
     private void Start() {
-      var panel = GameUI.Controller.GetUIElement<UITest>();
-      Debug.Log(panel.name);
+      _gameFactory= GlobalContainer.Container.Resolve<IGameFactory>();
+      _sceneLoader= GlobalContainer.Container.Resolve<ISceneLoader>();
     }
 
-    [Inject]
-    private void Construct(ISceneLoader sceneLoader) {
-      _sceneLoader = sceneLoader;
+    public void CreateCapsule() {
+      Debug.Log(_gameFactory);
+      Debug.Log(_sceneLoader);
+      var capsule = _gameFactory.Create<CapsuleTest>();
     }
   }
 }

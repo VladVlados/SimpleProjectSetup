@@ -26,7 +26,7 @@ namespace Architecture.CodeBase.Services.GlobalData {
       IsInitialized = true;
     }
 
-    public T GetStaticData<T>() where T : ItemGlobalData {
+    public T GetGlobalData<T>() where T : ItemGlobalData {
       return _staticDataMap[typeof(T)] as T;
     }
 

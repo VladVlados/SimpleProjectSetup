@@ -19,12 +19,12 @@ namespace Architecture.CodeBase.Services.AssetManager {
 
     public bool IsInitialized { get; private set; }
 
-    public Task<GameObject> Load<T>() {
-      throw new NotImplementedException();
+    public async Task<GameObject> Load<T>() {
+      return await Load<GameObject>(_assetPath.FormPath<T>());
     }
-
-    public Task<T> Load<T>(string address) where T : class {
-      throw new NotImplementedException();
+    
+    public async Task<GameObject> Load<T>(string address) {
+      return await Load<GameObject>(address);
     }
   }
 }

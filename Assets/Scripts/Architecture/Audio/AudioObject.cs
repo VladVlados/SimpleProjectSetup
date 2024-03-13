@@ -1,38 +1,18 @@
 using System;
-using Architecture.GameCore;
+using Architecture.CodeBase.Services.Events;
+using Architecture.CodeBase.Services.Factory;
 using Architecture.Utils.TimerUtils;
-using ObjectPool.Scripts.PoolLogic;
 using UnityEngine;
-using IPoolable = Architecture.CodeBase.Pool.IPoolable;
 
 namespace Architecture.Audio {
-  public class AudioObject : MonoBehaviour, IPoolable {
+  public class AudioObject : FactoryPoolablePrefab {
     private AudioSource _audioSource;
     private AudioValue _currentAudioValue;
-    private bool _isPaused;
-    private bool _isPlayDelay;
     private SoundType _soundType;
-    private Timer _timer;
 
     private void Awake() {
       _audioSource = GetComponent<AudioSource>();
-      _timer = gameObject.AddComponent<Timer>();
-      _timer.Init(TimerType.UpdateTick);
-    }
-
-    private void OnDestroy() {
-      FinishPlayback();
-    }
-
-    public event EventHandler OnReturnEvent;
-
-    public void Get() {
-      gameObject.SetActive(true);
-    }
-
-    public void Return() {
-      gameObject.SetActive(false);
-     // Game.GetSceneDataStorage<Pool>().Return(this);
+      OnReturnEvent += FinishPlayback;
     }
 
     public event Action<AudioObject> PlaybackFinished;
@@ -42,51 +22,33 @@ namespace Architecture.Audio {
       _soundType = soundType;
     }
 
-    public void Pause() {
-      _timer.Pause();
-      _isPaused = _audioSource;
-      if (_isPaused) {
-        _audioSource.Pause();
-      }
-    }
-
-    public void Resume() {
-      _timer.Resume();
-      if (_isPaused) {
-        _audioSource.UnPause();
-      }
-    }
-
     public void PlaySoundOneShot(AudioClip audioClip) {
+      _audioSource.clip = audioClip;
       _audioSource.PlayOneShot(audioClip);
-      _timer.Start(audioClip.length);
-      _timer.OnTimerFinishedEvent += FinishPlayback;
+    }
+
+    public bool IsPlaying() {
+      return _audioSource.isPlaying;
     }
 
     public void PlaySoundOneShot(AudioClip audioClip, Vector3 position) {
       _audioSource.transform.position = position;
       _audioSource.PlayOneShot(audioClip);
-      _timer.Start(audioClip.length);
-      _timer.OnTimerFinishedEvent += FinishPlayback;
     }
 
     public void PlaySound(AudioClip audioClip) {
       _audioSource.clip = audioClip;
       _audioSource.Play();
-      _timer.Start(audioClip.length);
-      _timer.OnTimerFinishedEvent += FinishPlayback;
     }
 
     public void PlaySound(AudioClip audioClip, Vector3 position) {
       _audioSource.clip = audioClip;
       _audioSource.transform.position = position;
       _audioSource.Play();
-      _timer.Start(audioClip.length);
-      _timer.OnTimerFinishedEvent += FinishPlayback;
     }
 
-    private void FinishPlayback() {
-      _timer.OnTimerFinishedEvent -= FinishPlayback;
+    private void FinishPlayback(object sender, EventArgs e) {
+      OnReturnEvent -= FinishPlayback;
       SinglePlaybackFinished?.Invoke(this, _soundType);
       PlaybackFinished?.Invoke(this);
     }

@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace Architecture.CodeBase.Services.Audio {
   public interface IAudioService : IInitializedService {
-    void Play(AudioName audioName, AudioSettings data = null);
+    void PlaySoundOneShot(SoundType soundType);
 
-    void Play(AudioName audioName, Vector3 at, AudioSettings data = null);
+    void PlaySoundOneShot(SoundType soundType, Vector3 position);
 
-    void Stop(AudioName audioName);
+    void PlaySound(SoundType soundType);
 
-    void Mute();
+    void PlaySound(SoundType soundType, Vector3 position);
 
-    void Unmute();
+    void StopSound(AudioObject audioObject);
   }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Architecture.Audio;
 using Architecture.CodeBase.Pool;
 using Architecture.CodeBase.Services.Events;
 using Architecture.CodeBase.Services.Factory;

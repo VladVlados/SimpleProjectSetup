@@ -1,7 +1,7 @@
 using Architecture;
-using Architecture.Audio;
+using Architecture.CodeBase;
 using Architecture.CodeBase.Services.Audio;
-using Architecture.UI;
+using Architecture.CodeBase.UI;
 using UnityEngine;
 
 namespace _Temp.Scripts {

@@ -1,4 +1,3 @@
-using Architecture.Audio;
 using UnityEngine;
 
 namespace Architecture.CodeBase.Services.Audio {

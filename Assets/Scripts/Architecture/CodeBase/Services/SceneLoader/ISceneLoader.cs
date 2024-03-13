@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Architecture.Scene;
 
 namespace Architecture.CodeBase.Services.SceneLoader {
   public interface ISceneLoader : IService {

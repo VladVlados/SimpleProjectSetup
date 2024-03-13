@@ -2,8 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Architecture.CodeBase.Services.CoroutineHandler;
-using Architecture.Scene;
-using Architecture.UI;
+using Architecture.CodeBase.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

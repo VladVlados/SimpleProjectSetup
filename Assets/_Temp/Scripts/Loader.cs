@@ -1,7 +1,8 @@
 using Architecture;
+using Architecture.CodeBase;
+using Architecture.CodeBase.Constants;
+using Architecture.CodeBase.Services.Save;
 using Architecture.CodeBase.Services.SceneLoader;
-using Architecture.Constants;
-using Architecture.Save;
 using UnityEngine;
 using Zenject;
 

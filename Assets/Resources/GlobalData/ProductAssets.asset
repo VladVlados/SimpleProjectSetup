@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33cdf9f7d3e89f24b99008c084aff674, type: 3}
   m_Name: ProductAssets
   m_EditorClassIdentifier: 
-  _purchaseItems: []
+  _purchaseItems:
+  - _productID: com.company.vladandnikki.noads
+    _itemType: 1
+  - _productID: com.company.vladandnikki.subscription
+    _itemType: 2

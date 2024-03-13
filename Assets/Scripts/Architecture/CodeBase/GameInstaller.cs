@@ -4,6 +4,7 @@ using Architecture.CodeBase.Services.CoroutineHandler;
 using Architecture.CodeBase.Services.Events;
 using Architecture.CodeBase.Services.Factory;
 using Architecture.CodeBase.Services.GlobalData;
+using Architecture.CodeBase.Services.Purchase;
 using Architecture.CodeBase.Services.Random;
 using Architecture.CodeBase.Services.Save;
 using Architecture.CodeBase.Services.SceneLoader;

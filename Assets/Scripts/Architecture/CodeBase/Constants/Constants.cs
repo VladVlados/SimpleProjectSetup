@@ -2,6 +2,8 @@ namespace Architecture.CodeBase.Constants {
   public class Constants {
     public class SceneNames {
       public const string MAIN_MENU = "MainMenu";
+      public const string START_LOADER = "StartLoader";
+      public const string START_SCREEN = "StartScreen";
     }
 
     public class Names {

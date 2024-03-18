@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _layer: 3
-  _showByDefault: 0
 --- !u!223 &2592260804216853024
 Canvas:
   m_ObjectHideFlags: 0
@@ -334,7 +333,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _layer: 2
-  _showByDefault: 0
 --- !u!223 &4727844033832563691
 Canvas:
   m_ObjectHideFlags: 0
@@ -435,7 +433,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _layer: 1
-  _showByDefault: 0
 --- !u!223 &64718719900596077
 Canvas:
   m_ObjectHideFlags: 0
@@ -536,7 +533,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _layer: 0
-  _showByDefault: 0
 --- !u!223 &3545575868458250878
 Canvas:
   m_ObjectHideFlags: 0
@@ -555,7 +551,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 826689741
   m_SortingOrder: 0

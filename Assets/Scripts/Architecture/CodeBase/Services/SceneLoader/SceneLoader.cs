@@ -17,11 +17,14 @@ namespace Architecture.CodeBase.Services.SceneLoader {
 
     public Dictionary<string, SceneConfig> ScenesConfigMap { get; set; }
 
-    public void Load(string sceneName, Action onSceneLoaded = null) {
-      ScenesConfigMap.TryGetValue(sceneName, out SceneConfig config);
-      GameUI.Build(config);
-      SceneConfig = config;
-      _coroutineHandler.StartCoroutine(LoadScene(sceneName, onSceneLoaded));
+    public void Load(string sceneName, Action onSceneLoaded = null, Action<AsyncOperation> onSceneProgressLoad = null) {
+      _coroutineHandler.StartCoroutine(LoadScene(sceneName, onSceneLoaded, onSceneProgressLoad));
+    }
+
+    public SceneConfig SceneConfig { get; set; }
+
+    public void Load(string sceneName, Action onSceneLoaded = null, Action<System.ComponentModel.AsyncOperation> onSceneProgressLoad = null) {
+      throw new NotImplementedException();
     }
 
     private void InitializeSceneConfigs() {
@@ -32,7 +35,7 @@ namespace Architecture.CodeBase.Services.SceneLoader {
       }
     }
 
-    private IEnumerator LoadScene(string nextScene, Action onSceneLoaded) {
+    private IEnumerator LoadScene(string nextScene, Action onSceneLoaded, Action<AsyncOperation> onSceneProgressLoad) {
       if (SceneManager.GetActiveScene().name.Equals(nextScene)) {
         onSceneLoaded?.Invoke();
         yield break;
@@ -41,12 +44,14 @@ namespace Architecture.CodeBase.Services.SceneLoader {
       AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
 
       while (waitNextScene.isDone == false) {
+        onSceneProgressLoad?.Invoke(waitNextScene);
         yield return null;
       }
 
+      ScenesConfigMap.TryGetValue(nextScene, out SceneConfig config);
+      SceneConfig = config;
+      GameUI.Build(config);
       onSceneLoaded?.Invoke();
     }
-
-    public SceneConfig SceneConfig { get; set; }
   }
 }

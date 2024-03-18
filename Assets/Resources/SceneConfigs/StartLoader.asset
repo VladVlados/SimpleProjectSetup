@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6ea24726753fa641b95215691fb990e, type: 3}
-  m_Name: MainMenu
+  m_Name: StartLoader
   m_EditorClassIdentifier: 
-  _sceneName: MainMenu
+  _sceneName: StartLoader
   _uiPrefabs:
-  - {fileID: 4687407460832672702, guid: 53b76836c5f57ba4798ea5610c5c1c5a, type: 3}
+  - {fileID: 231831724251716985, guid: abee2a61a40c9f54a94b0ae485641f0d, type: 3}

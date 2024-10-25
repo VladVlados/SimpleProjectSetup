@@ -4,5 +4,32 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/StartLoader.unity
+    guid: 1cbbd17e58b23ce4992339752e9456a7
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 72e5eabb2f0941247925948647531b50
+  - enabled: 1
+    path: Assets/Scenes/StartScreen.unity
+    guid: f1252fc742ae1a0468d7d965f2d0fd5e
+  - enabled: 1
+    path: Assets/Scenes/Locations/Forest.unity
+    guid: a4bb4d3316042b04f8d1390675835b40
+  - enabled: 1
+    path: Assets/Scenes/Locations/Hill.unity
+    guid: 045263b62a3554c49a75b37e8dee0700
+  - enabled: 1
+    path: Assets/Scenes/Locations/River.unity
+    guid: c9d44ac2602c1854087ec4b4efd4fc68
+  - enabled: 1
+    path: Assets/Scenes/Locations/Glade.unity
+    guid: dcbf976d38dda18419195e22e0e60052
+  - enabled: 1
+    path: Assets/Scenes/Locations/Customization.unity
+    guid: 7ca338a9418e52c4790d52ae35a58f0c
   m_configObjects: {}

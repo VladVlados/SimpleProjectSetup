@@ -15,3 +15,4 @@ MonoBehaviour:
   _sceneName: MainMenu
   _uiPrefabs:
   - {fileID: 4687407460832672702, guid: 53b76836c5f57ba4798ea5610c5c1c5a, type: 3}
+  - {fileID: 6614160738667834190, guid: d8b1143023c46a44495e562f496bdca9, type: 3}

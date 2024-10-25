@@ -391,7 +391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layer: 0
   _showByDefault: 1
-  _sceneName: MainMenu
+  _sceneName: StartScreen
   _closeButton: {fileID: 4204049054567320251}
   _pauseButton: {fileID: 5100766588438129060}
   _backToMenuButton: {fileID: 7065768583915869267}

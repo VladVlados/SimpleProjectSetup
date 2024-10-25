@@ -15,5 +15,3 @@ MonoBehaviour:
   _sceneName: StartScreen
   _uiPrefabs:
   - {fileID: 8071661497099728292, guid: 1ded8af8d3c493b44b2b14f30c1f07e6, type: 3}
-  - {fileID: 7772091321099919857, guid: 837ae8a302929c943a0c91ac6894a85b, type: 3}
-  - {fileID: 6534675612280922185, guid: a63a5cca8a80edf4d941be8b6973af1a, type: 3}
